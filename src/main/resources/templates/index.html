@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Instruments Store</title>
+    <link  rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}"/>
+    <link   rel="stylesheet" href="../static/bootstrap.min.css" th:href="@{/bootstrap.min.css}"/>
+    <script type="text/javascript" src="/static/angular.min.js" th:src="@{angular.min.js}"></script>
+    <script type="text/javascript" src="/static/app/app.module.js" th:src="@{app/app.module.js}"></script>
+    <script type="text/javascript" src="/static/app/products.controller.js" th:src="@{app/products.controller.js}"></script>
+</head>
+<body ng-app="app" ng-controller="InstrumentsController as vm">
+
+
+ <div class="row">
+<div class="col-lg-offset-2 col-lg-8">
+
+    <div class="btn-group" role="group">
+        <button ng-click="vm.getAll()" type="button" class="btn btn-default">All</button>
+        <button ng-click="vm.getAffordable()" type="button" class="btn btn-default">Hou much your budget</button>
+        <input type="text" class="btn btn-default" th:id="affordablePrice"/>
+    </div>
+    <table class="table">
+        <thread>
+            <tr>
+                <th>ID</th>
+                <th>Instrument</th>
+                <th>Compania</th>
+                <th>Numarul produselor</th>
+                <th>Pret</th>
+
+                <th style="width: 90px"></th>
+            </tr>
+        </thread>
+        <tbody>
+
+        </tbody>
+        <tr ng-repeat="instrument in vm.instruments">
+            <td>{{instrument.id}}</td>
+            <td>{{instrument.instrumentName}}</td>
+            <td>{{instrument.Company}}</td>
+            <td>{{instrument.nrProd}}</td>
+            <td>{{instrument.priceInstrument}}</td>
+
+
+            <td>
+                <button class="btn btn-danger" ng-click="vm.deleteInstruments(instruments.id)">Delete</button>
+            </td>
+
+        </tr>
+    </table>
+
+</div>
+</div>
+
+<footer class="footer" style="position: absolute ;bottom:0">
+    <div class ="container">
+        <p th:text="${#dates.format(datetime,'dd MMM yyyy  HH:mm')}" class="text-muted">Page was rendered today</p>
+    </div>
+</footer>
+</body>
+</html>

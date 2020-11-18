@@ -1,0 +1,48 @@
+1. De inlocuit declarare variabila LONG:
+ Long id = new Long(20);
+ Dupa inlocuire:
+  Long id = 20L;
+
+
+2.Expresie Lambda
+
+ assertThrows(EmptyResultDataAccessException.class, () -> {instrumentstsRepository.deleteById(id);});
+
+    }
+
+ dupa inlocuire:
+
+ assertThrows(EmptyResultDataAccessException.class, () -> instrumentstsRepository.deleteById(id));
+3.
+ private InstrumentstsRepository instrumentstsRepository;
+
+ dupa
+ private final InstrumentRepository instrumentRepository;
+
+
+4.
+ResponseEntity<List<InstrumentstsRepository>> response = executeInstrumentRequest("/affordable/100", HttpMethod.GET);
+        assertEquals(HttpStatus.valueOf(200), response.getStatusCode());
+        List<InstrumentstsRepository> responseinstrumentsList = response.getBody();
+        assertEquals(0,responseinstrumentsList.size());
+
+
+        dupa:
+        ResponseEntity<List<InstrumentstsRepository>> response = executeInstrumentRequest("/affordable/100", HttpMethod.GET);
+                assertEquals(HttpStatus.valueOf(200), response.getStatusCode());
+                List<InstrumentstsRepository> responseinstrumentsList = response.getBody();
+                assert responseinstrumentsList != null;
+                assertEquals(0,responseinstrumentsList.size());
+
+5.
+  private ResponseEntity<List<InstrumentstsRepository>> executeInstrumentRequest(String url, HttpMethod method) {
+        return restTemplate.exchange(serverUrl + url, method, null, new ParameterizedTypeReference<List<InstrumentstsRepository>>() {
+        });
+
+
+        dupa:
+        private ResponseEntity<List<InstrumentstsRepository>> executeInstrumentRequest(String url) {
+                return restTemplate.exchange(serverUrl + url, HttpMethod.GET, null, new ParameterizedTypeReference<List<InstrumentstsRepository>>() {
+                });
+
+
