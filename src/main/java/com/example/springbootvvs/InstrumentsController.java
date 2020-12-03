@@ -1,7 +1,9 @@
 package com.example.springbootvvs;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,14 @@ public class InstrumentsController {
     @RequestMapping(value= "/affordable/{price}",method = RequestMethod.GET)
     public List<MusicInstruments> getAffordable(@PathVariable double price) {
        return instrumentstsRepository.findByPriceInstrumentLessThan(price);
+
+//        List<MusicInstruments> musicInstrumentsList = instrumentstsRepository.findByPriceInstrumentLessThan(price);
+//
+//        if(musicInstrumentsList.isEmpty()){
+//            throw new ResponseStatusException(HttpStatus.GONE, "Nu s-au gasit instrumente muzicale cu pretul selectat");
+//        }
+//
+//        return musicInstrumentsList;
     }
 
 
